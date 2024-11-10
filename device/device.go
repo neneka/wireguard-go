@@ -154,6 +154,7 @@ func (device *Device) changeState(want deviceState) (err error) {
 		if err == nil {
 			break
 		}
+		device.log.Errorf("Interface up failed: %v", err)
 		fallthrough // up failed; bring the device all the way back down
 	case deviceStateDown:
 		device.state.state.Store(uint32(deviceStateDown))
